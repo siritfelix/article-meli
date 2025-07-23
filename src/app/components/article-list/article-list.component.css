@@ -28,3 +28,50 @@
 .price {
   font-weight: bold;
 }
+
+/* Media Queries para Responsividad de ArticleListComponent */
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .article-list {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .article-item {
+    width: 150px; /* Ajusta el ancho para móviles */
+    padding: 8px;
+  }
+
+  .article-item img {
+    max-width: 90%;
+  }
+
+  .article-details h2 {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+}
+
+/* Para pantallas medianas (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .article-list {
+    gap: 18px;
+  }
+
+  .article-item {
+    width: 180px; /* Ajusta el ancho para tablets */
+    padding: 12px;
+  }
+
+  .article-details h2 {
+    font-size: 18px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+}
