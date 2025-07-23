@@ -17,6 +17,7 @@ export class ArticleDetailComponent implements OnInit {
     selectedImage: string | undefined;
     showImageModal: boolean = false;
     modalImageUrl: string | undefined;
+    showPaymentMethodsModal: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -44,9 +45,17 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     closeImageModal(): void {
-        this.showImageModal = false;
-        this.modalImageUrl = undefined;
+      this.showImageModal = false;
+      this.modalImageUrl = undefined;
     }
-}
+  
+    openPaymentMethodsModal(): void {
+      this.showPaymentMethodsModal = true;
+    }
+  
+    closePaymentMethodsModal(): void {
+      this.showPaymentMethodsModal = false;
+    }
+  }
 
 

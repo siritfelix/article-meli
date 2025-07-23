@@ -35,16 +35,23 @@
         </div>
 
         <div class="payment-methods card">
-            <h2>Métodos de pago</h2>
-            <ul>
-                <li *ngFor="let method of article.paymentMethods">
-                    <div class="payment-method-item">
-                        <img *ngIf="method.image" [src]="method.image" alt="{{ method.type }}" class="payment-method-image">
-                        <img *ngIf="method.imageBanck" [src]="method.imageBanck" alt="{{ method.banck }}" class="payment-method-bank-image">                        
-                        <span> - {{ method.banck }} (hasta {{ method.dues }} cuotas)</span>
-                    </div>
-                </li>
-            </ul>
+            <h2 (click)="openPaymentMethodsModal()">Métodos de pago <span class="info-icon">&#9432;</span></h2>
+        </div>
+
+        <div class="payment-methods-modal" *ngIf="showPaymentMethodsModal" (click)="closePaymentMethodsModal()">
+            <div class="modal-content-payment" (click)="$event.stopPropagation()">
+                <span class="close-button" (click)="closePaymentMethodsModal()">&times;</span>
+                <h2>Métodos de pago</h2>
+                <ul>
+                    <li *ngFor="let method of article.paymentMethods">
+                        <div class="payment-method-item">
+                            <img *ngIf="method.image" [src]="method.image" alt="{{ method.type }}" class="payment-method-image">
+                            <img *ngIf="method.imageBanck" [src]="method.imageBanck" alt="{{ method.banck }}" class="payment-method-bank-image">                            
+                            <span> - {{ method.banck }} (hasta {{ method.dues }} cuotas)</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
