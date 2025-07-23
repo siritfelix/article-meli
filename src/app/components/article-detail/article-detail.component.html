@@ -1,0 +1,66 @@
+<div class="article-detail-container" *ngIf="article">
+    <div class="main-content">
+
+        <div class="image-gallery">
+            <div class="thumbnails">
+                <img *ngFor="let image of article.images" [src]="image.small" alt="Thumbnail" (click)="selectImage(image.large)">
+            </div>
+            <div class="main-image">
+                <img [src]="selectedImage" alt="Main product image">
+            </div>
+        </div>
+
+        <div class="article-info">
+            <h1 class="title">{{ article.title }}</h1>
+            <app-star-rating [rating]="article.rating" [reviewsCount]="article.reviews.length"></app-star-rating>
+            <div class="price-section">
+                <p class="price-amount">{{ article.price | currency:'USD' }}</p>
+            </div>
+            <div class="stock-info">
+                <p>Stock disponible: {{ article.stock }} unidades</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+
+        <div class="seller-info card">
+            <h2>Información del vendedor</h2>
+            <p class="seller-name">{{ article.seller.name }}</p>
+            <p>Ubicación: {{ article.seller.location }}</p>
+            <div class="seller-reputation">
+                <span>Calificación: </span>
+                <app-star-rating [rating]="article.seller.rating"></app-star-rating>
+            </div>
+        </div>
+
+        <div class="payment-methods card">
+            <h2>Métodos de pago</h2>
+            <ul>
+                <li *ngFor="let method of article.paymentMethods">
+                    {{ method.type }} - {{ method.banck }} (hasta {{ method.dues }} cuotas)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="additional-details">
+        <div class="description-section">
+            <h2>Descripción</h2>
+            <p>{{ article.description }}</p>
+        </div>
+        <div class="ratings-reviews">
+            <h2>Calificaciones y Reseñas</h2>
+            <div class="ratings">
+                <p>Calificación general: {{ article.rating }} / 5</p>
+            </div>
+            <div class="reviews">
+                <h3>Reseñas</h3>
+                <div class="review" *ngFor="let review of article.reviews">
+                    <app-star-rating [rating]="review.stars"></app-star-rating>
+                    <p>{{ review.message }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

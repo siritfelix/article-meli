@@ -1,0 +1,7 @@
+<div class="rating-summary">
+  <span class="rating-value">{{ rating }}</span>
+  <div class="rating">
+    <span *ngFor="let i of [1, 2, 3, 4, 5]" class="star" [class.filled]="i <= rating">&#9733;</span>
+  </div>
+  <span *ngIf="reviewsCount !== undefined" class="reviews-count">({{ reviewsCount }} reseñas)</span>
+</div>

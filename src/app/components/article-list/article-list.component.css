@@ -1,0 +1,22 @@
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.article-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.article-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.price {
+  font-weight: bold;
+}
