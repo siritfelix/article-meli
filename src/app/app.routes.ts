@@ -4,5 +4,6 @@ import { ArticleListComponent } from './components/article-list/article-list.com
 
 export const routes: Routes = [
     { path: 'article/:id', component: ArticleDetailComponent },
-    { path: 'article', component: ArticleListComponent }
+    { path: 'article', component: ArticleListComponent },
+    { path: '', redirectTo: 'article', pathMatch: 'full' }
 ];
