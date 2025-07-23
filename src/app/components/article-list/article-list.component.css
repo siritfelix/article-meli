@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  list-style-type: none;
+  padding: 0;
 }
 
 .article-item {
@@ -10,6 +12,12 @@
   padding: 10px;
   width: 200px;
   text-align: center;
+}
+
+.article-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .article-item img {

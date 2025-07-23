@@ -17,6 +17,8 @@ export interface Article {
     type: string;
     banck: string;
     dues: number;
+    image: string;
+    imageBanck:string;
   }[];
   rating: number;
   reviews: {

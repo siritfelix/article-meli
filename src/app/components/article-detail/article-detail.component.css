@@ -129,7 +129,24 @@
 }
 
 .payment-methods li {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.payment-method-item {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  gap: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.payment-method-image,
+.payment-method-bank-image {
+  width: 40px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: auto;
+  object-fit: contain;
+}
+
+.payment-method-type {
+  font-weight: bold;
 }
 
 .additional-details {
@@ -146,6 +163,45 @@
 .review {
   border-bottom: 1px solid #f0f0f0;
   padding: 10px 0;
+}
+
+.image-modal {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .review:last-child {

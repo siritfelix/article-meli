@@ -5,7 +5,7 @@
             <div class="thumbnails">
                 <img *ngFor="let image of article.images" [src]="image.small" alt="Thumbnail" (click)="selectImage(image.large)">
             </div>
-            <div class="main-image">
+            <div class="main-image" (click)="openImageModal(selectedImage)">
                 <img [src]="selectedImage" alt="Main product image">
             </div>
         </div>
@@ -38,7 +38,11 @@
             <h2>Métodos de pago</h2>
             <ul>
                 <li *ngFor="let method of article.paymentMethods">
-                    {{ method.type }} - {{ method.banck }} (hasta {{ method.dues }} cuotas)
+                    <div class="payment-method-item">
+                        <img *ngIf="method.image" [src]="method.image" alt="{{ method.type }}" class="payment-method-image">
+                        <img *ngIf="method.imageBanck" [src]="method.imageBanck" alt="{{ method.banck }}" class="payment-method-bank-image">                        
+                        <span> - {{ method.banck }} (hasta {{ method.dues }} cuotas)</span>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -59,6 +63,11 @@
                 <div class="review" *ngFor="let review of article.reviews">
                     <app-star-rating [rating]="review.stars"></app-star-rating>
                     <p>{{ review.message }}</p>
+                </div>
+                
+                <div class="image-modal" *ngIf="showImageModal" (click)="closeImageModal()">
+                    <span class="close-button">&times;</span>
+                    <img [src]="modalImageUrl" alt="Amplified product image" class="modal-content">
                 </div>
             </div>
         </div>
