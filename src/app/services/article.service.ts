@@ -17,7 +17,7 @@ export class ArticleService {
     getArticles(): Observable<Article[]> {
         return this.http.get<Article[]>(this.apiUrl).pipe(
             catchError(error => {
-                this.errorService.setError(environment.getArticles);
+                this.errorService.setError(environment.getArticlesError);
                 return throwError(() => error);
             })
         );
@@ -26,7 +26,7 @@ export class ArticleService {
     getArticleById(id: string): Observable<Article> {
         return this.http.get<Article>(`${this.apiUrl}/${id}`).pipe(
             catchError(error => {
-                this.errorService.setError(environment.getArticleById);
+                this.errorService.setError(environment.getArticleByIdError);
                 return throwError(() => error);
             })
         );
