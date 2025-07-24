@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Article } from '../../models/article.model';
 import { ArticleService } from '../../services/article.service';
+import { ErrorService } from '../../services/error.service';
 import { StarRatingComponent } from '../shared/star-rating/star-rating.component';
 
 @Component({
@@ -10,16 +11,26 @@ import { StarRatingComponent } from '../shared/star-rating/star-rating.component
   standalone: true,
   imports: [CommonModule, RouterModule, StarRatingComponent],
   templateUrl: './article-list.component.html',
-  styleUrl: './article-list.component.css'
+  styleUrls: ['./article-list.component.css']
 })
 export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
+  errorMessage: string | null = null;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
-    this.articleService.getArticles().subscribe(articles => {
-      this.articles = articles;
+    this.errorService.getError().subscribe(error => {
+      this.errorMessage = error;
+    });
+
+    this.articleService.getArticles().subscribe({
+      next: articles => {
+        this.articles = articles;
+      },
+      error: () => {
+        // El error ya será manejado por el ErrorService
+      }
     });
   }
 }

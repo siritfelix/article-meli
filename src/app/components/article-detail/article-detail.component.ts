@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '../../models/article.model';
 import { ArticleService } from '../../services/article.service';
+import { ErrorService } from '../../services/error.service';
 import { StarRatingComponent } from '../shared/star-rating/star-rating.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { StarRatingComponent } from '../shared/star-rating/star-rating.component
     standalone: true,
     imports: [CommonModule, StarRatingComponent],
     templateUrl: './article-detail.component.html',
-    styleUrl: './article-detail.component.css'
+    styleUrls: ['./article-detail.component.css']
 })
 export class ArticleDetailComponent implements OnInit {
     article: Article | undefined;
@@ -18,19 +19,30 @@ export class ArticleDetailComponent implements OnInit {
     showImageModal: boolean = false;
     modalImageUrl: string | undefined;
     showPaymentMethodsModal: boolean = false;
+    errorMessage: string | null = null;
 
     constructor(
         private route: ActivatedRoute,
-        private articleService: ArticleService
+        private articleService: ArticleService,
+        private errorService: ErrorService
     ) { }
 
     ngOnInit(): void {
+        this.errorService.getError().subscribe(error => {
+            this.errorMessage = error;
+        });
+
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
-            this.articleService.getArticleById(id).subscribe(article => {
-                this.article = article;
-                if (this.article.images.length > 0) {
-                    this.selectedImage = this.article.images[0].large;
+            this.articleService.getArticleById(id).subscribe({
+                next: article => {
+                    this.article = article;
+                    if (this.article.images.length > 0) {
+                        this.selectedImage = this.article.images[0].large;
+                    }
+                },
+                error: () => {
+                    // El error ya será manejado por el ErrorService
                 }
             });
         }
@@ -45,17 +57,15 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     closeImageModal(): void {
-      this.showImageModal = false;
-      this.modalImageUrl = undefined;
+        this.showImageModal = false;
+        this.modalImageUrl = undefined;
     }
-  
+
     openPaymentMethodsModal(): void {
-      this.showPaymentMethodsModal = true;
+        this.showPaymentMethodsModal = true;
     }
-  
+
     closePaymentMethodsModal(): void {
-      this.showPaymentMethodsModal = false;
+        this.showPaymentMethodsModal = false;
     }
-  }
-
-
+}

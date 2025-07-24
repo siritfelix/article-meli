@@ -1,0 +1,23 @@
+.error-banner {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.error-banner button {
+  background: none;
+  border: none;
+  color: #721c24;
+  font-weight: bold;
+  cursor: pointer;
+}
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
